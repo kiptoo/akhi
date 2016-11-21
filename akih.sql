@@ -1,19 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
--- http://www.phpmyadmin.net
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 05, 2016 at 03:20 PM
--- Server version: 5.5.8
--- PHP Version: 5.3.5
+-- Host: 127.0.0.1
+-- Generation Time: Nov 21, 2016 at 08:18 PM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `akih`
@@ -25,11 +26,10 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `counties`
 --
 
-CREATE TABLE IF NOT EXISTS `counties` (
-  `countyid` int(200) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  PRIMARY KEY (`countyid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
+CREATE TABLE `counties` (
+  `countyid` int(200) NOT NULL,
+  `name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `counties`
@@ -87,22 +87,38 @@ INSERT INTO `counties` (`countyid`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fields`
+--
+
+CREATE TABLE `fields` (
+  `fieldid` int(200) NOT NULL,
+  `longitude` text NOT NULL,
+  `latitude` text NOT NULL,
+  `name` text NOT NULL,
+  `farmid` int(200) NOT NULL,
+  `acres` int(200) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fields`
+--
+
+INSERT INTO `fields` (`fieldid`, `longitude`, `latitude`, `name`, `farmid`, `acres`) VALUES
+(19, '1.2921', '36.8219', 'Mango', 3, 23);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `locations`
 --
 
-CREATE TABLE IF NOT EXISTS `locations` (
-  `locationid` int(200) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `locations` (
+  `locationid` int(200) NOT NULL,
   `userid` int(200) NOT NULL,
   `long` text NOT NULL,
   `lat` text NOT NULL,
-  `name` text NOT NULL,
-  PRIMARY KEY (`locationid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `locations`
---
-
+  `name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -110,20 +126,79 @@ CREATE TABLE IF NOT EXISTS `locations` (
 -- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
-  `userid` int(200) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user` (
+  `userid` int(200) NOT NULL,
   `name` text NOT NULL,
   `email` text,
   `telephone` text NOT NULL,
   `category` text NOT NULL,
   `countyid` text NOT NULL,
-  `password` text NOT NULL,
-  PRIMARY KEY (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`userid`, `name`, `email`, `telephone`, `category`, `countyid`, `password`) VALUES
-(1, 'Elisha Aywak', 'elishaaywak@gmail.com', '0700755078', 'farmer', '1', 'elisha');
+(1, 'Elisha Aywak', 'elishaaywak@gmail.com', '0700755078', 'farmer', '1', 'elisha'),
+(2, 'Person Person', 'person@gmail.com', '075666634', 'farmer', '1', 'person'),
+(3, 'evans chirchir', 'evantoo56@gmail.com', '+254710531303', 'farmer', '30', 'kipchir5000');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `counties`
+--
+ALTER TABLE `counties`
+  ADD PRIMARY KEY (`countyid`);
+
+--
+-- Indexes for table `fields`
+--
+ALTER TABLE `fields`
+  ADD PRIMARY KEY (`fieldid`),
+  ADD KEY `fieldid` (`fieldid`),
+  ADD KEY `fieldid_2` (`fieldid`);
+
+--
+-- Indexes for table `locations`
+--
+ALTER TABLE `locations`
+  ADD PRIMARY KEY (`locationid`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`userid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `counties`
+--
+ALTER TABLE `counties`
+  MODIFY `countyid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+--
+-- AUTO_INCREMENT for table `fields`
+--
+ALTER TABLE `fields`
+  MODIFY `fieldid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `locations`
+--
+ALTER TABLE `locations`
+  MODIFY `locationid` int(200) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `userid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
