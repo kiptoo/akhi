@@ -1,0 +1,112 @@
+[09-Nov-2016 06:50:02 UTC] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/contrawo/public_html/agriinfo/index.php on line 90
+[09-Nov-2016 06:50:21 UTC] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/contrawo/public_html/agriinfo/login.php on line 19
+[09-Nov-2016 06:50:21 UTC] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/contrawo/public_html/agriinfo/index.php on line 90
+[09-Nov-2016 07:04:41 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 07:04:41 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 07:04:41 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 07:08:07 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 07:08:07 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 07:08:07 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 07:21:59 UTC] PHP Parse error:  syntax error, unexpected '$name' (T_VARIABLE) in /home/contrawo/public_html/agriinfo/newfarm.php on line 13
+[09-Nov-2016 07:22:09 UTC] PHP Parse error:  syntax error, unexpected '$name' (T_VARIABLE) in /home/contrawo/public_html/agriinfo/newfarm.php on line 13
+[09-Nov-2016 07:22:17 UTC] PHP Parse error:  syntax error, unexpected '$name' (T_VARIABLE) in /home/contrawo/public_html/agriinfo/newfarm.php on line 13
+[09-Nov-2016 07:23:18 UTC] PHP Parse error:  syntax error, unexpected '$name' (T_VARIABLE) in /home/contrawo/public_html/agriinfo/newfarm.php on line 13
+[09-Nov-2016 07:24:32 UTC] PHP Warning:  Unterminated comment starting line 11 in /home/contrawo/public_html/agriinfo/newfarm.php on line 11
+[09-Nov-2016 07:24:32 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 07:24:32 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 07:24:32 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 07:25:06 UTC] PHP Parse error:  syntax error, unexpected '$name' (T_VARIABLE) in /home/contrawo/public_html/agriinfo/newfarm.php on line 13
+[09-Nov-2016 07:25:31 UTC] PHP Parse error:  syntax error, unexpected '$name' (T_VARIABLE) in /home/contrawo/public_html/agriinfo/newfarm.php on line 13
+[09-Nov-2016 07:25:56 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 07:25:56 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 07:25:56 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 07:25:56 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 23
+[09-Nov-2016 07:26:47 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 07:26:47 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 07:26:47 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 07:26:47 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 23
+[09-Nov-2016 07:29:25 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 07:29:25 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 07:29:25 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 07:29:25 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 07:30:08 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 07:30:08 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 07:30:08 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 07:30:08 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 07:31:33 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 07:31:33 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 07:31:33 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 07:31:33 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 07:31:40 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 07:31:40 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 07:31:40 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 07:31:40 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 07:31:48 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 07:32:19 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 07:39:49 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 07:47:51 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 07:48:36 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 07:49:28 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 07:52:32 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 07:57:39 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 28
+[09-Nov-2016 07:58:36 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 25
+[09-Nov-2016 08:08:51 UTC] PHP Notice:  Undefined variable: result in /home/contrawo/public_html/agriinfo/token.php on line 24
+[09-Nov-2016 08:11:10 UTC] PHP Parse error:  syntax error, unexpected '$name' (T_VARIABLE) in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 08:11:31 UTC] PHP Parse error:  syntax error, unexpected '$name' (T_VARIABLE) in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 08:11:52 UTC] PHP Warning:  require(dgb.inc.php): failed to open stream: No such file or directory in /home/contrawo/public_html/agriinfo/newfarm.php on line 4
+[09-Nov-2016 08:11:52 UTC] PHP Warning:  require(dgb.inc.php): failed to open stream: No such file or directory in /home/contrawo/public_html/agriinfo/newfarm.php on line 4
+[09-Nov-2016 08:11:52 UTC] PHP Fatal error:  require(): Failed opening required 'dgb.inc.php' (include_path='.:/opt/alt/php55/usr/share/pear:/opt/alt/php55/usr/share/php') in /home/contrawo/public_html/agriinfo/newfarm.php on line 4
+[09-Nov-2016 08:12:09 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 08:12:09 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 08:12:09 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 08:12:09 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 25
+[09-Nov-2016 08:12:54 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 08:12:54 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 08:12:54 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 08:12:54 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 25
+[09-Nov-2016 08:15:16 UTC] PHP Notice:  Undefined index: name in /home/contrawo/public_html/agriinfo/newfarm.php on line 7
+[09-Nov-2016 08:15:16 UTC] PHP Notice:  Undefined index: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[09-Nov-2016 08:15:16 UTC] PHP Notice:  Undefined index: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 9
+[09-Nov-2016 08:15:16 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 25
+[09-Nov-2016 08:15:23 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 25
+[09-Nov-2016 08:17:41 UTC] PHP Notice:  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'long, lat, name) VALUES ('1','1.2921','36.8219','Potato farm')' at line 1 in INSERT INTO fields(farmid, long, lat, name) VALUES ('1','1.2921','36.8219','Potato farm') in /home/contrawo/public_html/agriinfo/newfarm.php on line 15
+[09-Nov-2016 08:17:41 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 25
+[09-Nov-2016 08:18:08 UTC] PHP Notice:  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'long, lat, name) VALUES ('1','1.2921','36.8219','Potato farm')' at line 1 in INSERT INTO fields(farmgid, long, lat, name) VALUES ('1','1.2921','36.8219','Potato farm') in /home/contrawo/public_html/agriinfo/newfarm.php on line 15
+[09-Nov-2016 08:18:08 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 25
+[09-Nov-2016 08:20:24 UTC] PHP Notice:  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'long, lat, name) VALUES ('2','1.2921','36.8219','Potato farm')' at line 1 in INSERT INTO fields(farmgid, long, lat, name) VALUES ('2','1.2921','36.8219','Potato farm') in /home/contrawo/public_html/agriinfo/newfarm.php on line 15
+[09-Nov-2016 08:20:24 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 25
+[09-Nov-2016 08:22:57 UTC] PHP Notice:  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'long, lat, name) VALUES ('2','1.2921','36.8219','Potato farm')' at line 1 in INSERT INTO fields(farmid, long, lat, name) VALUES ('2','1.2921','36.8219','Potato farm') in /home/contrawo/public_html/agriinfo/newfarm.php on line 16
+[09-Nov-2016 08:22:57 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 30
+[09-Nov-2016 08:23:13 UTC] PHP Notice:  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'long, lat, name) VALUES ('2','1.2921','36.8219','Potato farm')' at line 1 in INSERT INTO fields(farmid, long, lat, name) VALUES ('2','1.2921','36.8219','Potato farm') in /home/contrawo/public_html/agriinfo/newfarm.php on line 16
+[09-Nov-2016 08:23:13 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 30
+[09-Nov-2016 08:23:39 UTC] PHP Notice:  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'long, lat, name) VALUES ('2','1.2921','36.8219','Potato farm')' at line 1 in INSERT INTO fields(farmid, long, lat, name) VALUES ('2','1.2921','36.8219','Potato farm') in /home/contrawo/public_html/agriinfo/newfarm.php on line 16
+[09-Nov-2016 08:23:39 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 30
+[09-Nov-2016 08:31:23 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 24
+[09-Nov-2016 08:33:17 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 25
+[09-Nov-2016 08:33:39 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 25
+[09-Nov-2016 08:35:16 UTC] PHP Notice:  Undefined variable: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 14
+[09-Nov-2016 08:35:16 UTC] PHP Notice:  Undefined variable: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 14
+[09-Nov-2016 08:35:16 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 25
+[09-Nov-2016 08:36:55 UTC] PHP Notice:  Undefined variable: long in /home/contrawo/public_html/agriinfo/newfarm.php on line 15
+[09-Nov-2016 08:36:55 UTC] PHP Notice:  Undefined variable: lat in /home/contrawo/public_html/agriinfo/newfarm.php on line 15
+[09-Nov-2016 08:36:55 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 26
+[09-Nov-2016 08:37:56 UTC] PHP Notice:  Undefined variable: fieldid in /home/contrawo/public_html/agriinfo/newfarm.php on line 26
+[09-Nov-2016 08:48:53 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/contrawo/public_html/agriinfo/home.php on line 103
+[10-Nov-2016 07:34:35 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 21
+[10-Nov-2016 07:35:57 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 21
+[10-Nov-2016 07:36:27 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 21
+[10-Nov-2016 07:37:04 UTC] PHP Notice:  Use of undefined constant GetOAuthToken - assumed 'GetOAuthToken' in /home/contrawo/public_html/agriinfo/token.php on line 25
+[10-Nov-2016 07:37:04 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 21
+[10-Nov-2016 07:38:13 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 21
+[10-Nov-2016 07:40:08 UTC] PHP Warning:  Unterminated comment starting line 8 in /home/contrawo/public_html/agriinfo/newfarm.php on line 8
+[10-Nov-2016 07:40:08 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 21
+[10-Nov-2016 07:42:37 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 21
+[10-Nov-2016 07:43:12 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 21
+[10-Nov-2016 07:43:14 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 21
+[10-Nov-2016 07:44:29 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 20
+[10-Nov-2016 07:44:32 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 20
+[10-Nov-2016 07:45:01 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 20
+[10-Nov-2016 07:45:17 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 20
+[10-Nov-2016 07:45:51 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 20
+[10-Nov-2016 07:49:24 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 21
+[10-Nov-2016 07:50:09 UTC] PHP Fatal error:  Call to undefined function CurlExecute() in /home/contrawo/public_html/agriinfo/token.php on line 21
