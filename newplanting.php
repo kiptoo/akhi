@@ -1,15 +1,18 @@
 <?php
 session_start();
 ob_start();
-require(db.inc.php);
+require('db.inc.php');
 
 //the variables from the previous page of creating a new planting
-/*$crop_id=$_POST['cropid'];
+/*
+$crop_id=$_POST['cropid'];
 $planting_date=$_POST['plantingdate'];
 $yield_amount=$_POST['ammount'];
 $yield_units=$_POST['units'];
-$harvest_date=$_POST[harvestdata];
-*/
+$harvest_date=$_POST['harvestdate'];
+ * */
+ 
+echo $crop_id;
 /* aWhere Code Samples
  * Copyright (C) 2015 aWhere Inc.
  * License: MIT 
@@ -60,11 +63,12 @@ echo "<p>Access Token = $access_token</p>";
 
 echo "<hr><h1>Create a Field</h1>"; 
 
-$crop_id="barley-generic";
+$crop_id="pawpay";
 $planting_date="2016-01-11";
 $yield_amount="50";
 $yield_units="kilos";
 $harvest_date="2016-11-11";
+ 
 // For this example we're creating an associative array with the key-value pairs used in the payload. 
 // When we make the call we'll used json_encode() to turn it into a JSON-formatted string the API requires.
 
@@ -167,4 +171,4 @@ if($newFieldStatusCode==201){  	// Code 201 means the Create was successful
 echo $theid;
 //insert into the database
 $insert="";
-mysql_query($insert);
+//mysql_query($insert);

@@ -51,7 +51,7 @@ if (!isset($_SESSION['newfarm']))
       <li><a href="account.php">My Account</a></li>
       <li><a href="fields.php">Fields and Planting</a></li>
       <li><a href="weather.php">Weather</a></li>
-      <li><a href="forecasts.php">Forecasts</a></li>
+      <li><a href="forecast.php">Forecasts</a></li>
       <li class="active"><a href="#">Agronomics</a></li>
       <li><a href="help.php">Help</a></li>
       <li><a href="logout.php">Log Out</a></li>

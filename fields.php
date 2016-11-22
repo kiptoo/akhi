@@ -88,43 +88,31 @@ while ($user3=mysql_fetch_array($user2))
       </div>
       <div class="modal-body">
         <p>Enter the planting details for this field</p>
-        <form method="GET" action="weather.php">
+        
             
-            <form method="post" action="newplanting">
+            <form method="post" action="newplanting.php">
             <div class="form-group">
                 <label for="crop">Crop:</label>
-                <input type="text" class="form-control" id="date" name="crop">
+                <input type="text" class="form-control" id="name" name="cropid" required>
             </div>
             <div class="form-group">
                 <label for="date">Planting Date:</label>
-                <input type="date" class="form-control" id="date" name="date">
+                <input type="date" class="form-control" id="plantingdate" name="plantingdate" required>
             </div>
             <div class="form-group">
                 <label for="start">Yield Amount:</label>
-                <input type="text" class="form-control" id="yield" name="yield">
+                <input type="text" class="form-control" id="ammount" name="ammount" required>
             </div>
             <div class="form-group">
                 <label for="start">Yield units:</label>
-                <input type="text" class="form-control" id="yunits" name="yunits">
-            </div>
-            <div class="form-group">
-                <label for="start">Projected Harvest Date:</label>
-                <input type="date" class="form-control" id="end" name="projectd_date">
-            </div>
-            <div class="form-group">
-                <label for="start">Yield Amount:</label>
-                <input type="text" class="form-control" id="projected ammount" name="projected_ammount">
-            </div>
-            <div class="form-group">
-                <label for="start">Yield Units:</label>
-                <input type="date" class="form-control" id="unit" name="unit">
+                <input type="text" class="form-control" id="units" name="units" required>
             </div>
             <div class="form-group">
                 <label for="start">Harvest Date:</label>
-                <input type="date" class="form-control" id="end" name="end">
+                <input type="date" class="form-control" id="hdate" name="harvestdate" required>
             </div>
             <input type="hidden" name="fieldid" value="<?php echo "$farms3[fieldid]";?>"/>
-            <input type="submit" class="btn btn-default" value="View"/>
+            <input type="submit" class="btn btn-default" value="Add Planting"/>
         </form>
       </div>
       <div class="modal-footer">
