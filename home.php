@@ -20,31 +20,40 @@ $userid=$_SESSION['userid'];
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="jquery-1.9.0.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASp_3eeyBCPGfCl1XAlmPCSOCgF7ebjqI&callback=gmap"></script>
 <script type="text/javascript"> 
-  function googleMaps (lat, lng, zoom) { 
-    geocoder = new google.maps.Geocoder(); 
-    var myLatlng = new google.maps.LatLng(lat, lng); 
-    var myOptions = { 
-      zoom: zoom, 
-      center: myLatlng, 
-      mapTypeId: google.maps.MapTypeId.TERRAIN 
-    } 
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
-    var marker = new google.maps.Marker({ 
-        position: myLatlng,  
-        map: map 
-    }); 
-    google.maps.event.addListener(map, "center_changed", function(){ 
-      document.getElementById("latitude").value = map.getCenter().lat(); 
-      document.getElementById("longitude").value = map.getCenter().lng(); 
-      marker.setPosition(map.getCenter()); 
-      document.getElementById("zoom").value = map.getZoom(); 
-    }); 
-    google.maps.event.addListener(map, "zoom_changed", function(){ 
-      document.getElementById("zoom").value = map.getZoom(); 
-    }); 
-  } 
+  var map;
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(24.18061975930,79.36565089010);
+            var myOptions = {
+                zoom:7,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+            // marker refers to a global variable
+            marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+
+            google.maps.event.addListener(map, "click", function(event) {
+                // get lat/lon of click
+                var clickLat = event.latLng.lat();
+                var clickLon = event.latLng.lng();
+
+                // show in input box
+                document.getElementById("lat").value = clickLat.toFixed(5);
+                document.getElementById("lon").value = clickLon.toFixed(5);
+
+                  var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(clickLat,clickLon),
+                        map: map
+                     });
+            });
+    }   
+
+    window.onload = function () { initialize() };
 </script>
 
  
@@ -118,6 +127,7 @@ while ($user3=mysql_fetch_array($user2))
 			</div>
 			<button type="submit" class="btn btn-default">Add farm</button>
 		</form>
+          <div id="gmap"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
