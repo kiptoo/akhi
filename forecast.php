@@ -6,6 +6,7 @@ if (!isset($_SESSION['userid']))
 	header('Location: index.php');
 }
 require 'db.inc.php';
+error_reporting(E_ERROR | E_PARSE);
 $userid=$_SESSION['userid'];
 if ($_GET)
 {
@@ -53,7 +54,6 @@ if (!isset($_SESSION['newfarm']))
       <li><a href="weather.php">Weather</a></li>
       <li class="active"><a href="#">Forecasts</a></li>
       <li><a href="agronomics.php">Agronomics</a></li>
-      <li><a href="models.php">Models</a></li>
       <li><a href="help.php">Help</a></li>
       <li><a href="logout.php">Log Out</a></li>
     </ul>
@@ -84,7 +84,7 @@ if (isset($_GET['fieldid']))
 // First, you always need to generate a token. We built the GetOAuthToken 
 // function (in header.php) to streamline that part
 
-echo "<h1>Get Access Token</h1>"; 
+//echo "<h1>Get Access Token</h1>"; 
 
 try{ 	//if there is a cURL problem and the API call can't execute at all, 
 		//the function throws an exception which we can catch to fail gracefully.
@@ -96,7 +96,7 @@ try{ 	//if there is a cURL problem and the API call can't execute at all,
 	exit();  			   // in your code you'll want to handle the error and recover appropriately.
 } 
 
-echo "<p>Access Token = $access_token</p>"; 
+//echo "<p>Access Token = $access_token</p>"; 
 
 
 // MAKE API CALL 
@@ -143,8 +143,8 @@ if($forecastStatusCode==200){  	// Code 200 means the request was successful
 			.$forecastResponse->forecasts[0]->forecast[0]->temperatures->min."&deg;"
 			.$forecastResponse->forecasts[0]->forecast[0]->temperatures->units
 			."</p>"; 
-	echo '<p>Request:</p><pre>GET '.$forecastURL.'</pre>'; 
-	echo '<p>Content-Range Header:</p>';
+	//echo '<p>Request:</p><pre>GET '.$forecastURL.'</pre>'; 
+	//echo '<p>Content-Range Header:</p>';
 	
 	// HTTP transactions return a lot of headers, but in this example we only want the Content-Range header
 	// (the parseHTTPHeaders function returns just the headers you want)
@@ -152,14 +152,169 @@ if($forecastStatusCode==200){  	// Code 200 means the request was successful
 	// Content-Range header shows which of the results are on this page (e.g., 1-10) and the total number
 	// of results. It looks something like this: 
 	// Content-Range: observations 0-5/5
-	echo "<pre>".parseHTTPHeaders($forecastResponseHeaders,array('Content-Range'))."</pre>"; 
-	echo '<p>Response Body:</p>';
-	echo '<pre>'; 
-	echo stripslashes(json_encode($forecastResponse,JSON_PRETTY_PRINT)); //Note: Stripslashes() is used just for prettier 
-	echo '</pre>'; 														 //output in the browser. Not needed normally.
+	//echo "<pre>".parseHTTPHeaders($forecastResponseHeaders,array('Content-Range'))."</pre>"; 
+	//echo '<p>Response Body:</p>';
+	//echo '<pre>'; 
+	//echo stripslashes(json_encode($forecastResponse,JSON_PRETTY_PRINT)); //Note: Stripslashes() is used just for prettier 
+	//echo '</pre>'; 														 //output in the browser. Not needed normally.
 	
-	
-} else { 							// If there is any other response code, there was a problem.
+        
+        
+        $data=json_encode($forecastResponse);
+         $result = json_decode($data,true);
+        //  Scan through outer loop
+         echo "<pre>";
+foreach ($result as $innerArray) {
+    //  Check type
+    if (is_array($innerArray)){
+        //  Scan through inner loop
+        $x=0;
+        foreach ($innerArray as $value) {
+            if ($value['date']!=""){
+            echo"<h4><u>Forecast for $value[date]</u></h4>";
+            //get the temperature
+            echo"<h1>";
+            
+            foreach($value['forecast'] as $forecast) {
+                
+                    echo"Start time: $forecast[startTime]<br/>";
+                
+                    echo"End time: $forecast[endTime]<br/>";
+                    
+                    echo"Condition: $forecast[conditionsText]<br/>";
+                    
+                    $x=0;
+            foreach($forecast['temperatures'] as $temperature) {
+                if ($x==0){
+                    echo"Maximum Temperature: ";
+                }
+                if ($x==1){
+                    echo"Minimum Temperature: ";
+                }
+                echo "$temperature ";
+                
+                $x++;
+                }
+                echo"<br/>";       
+                
+                //get the precipitation
+                
+            $x=0;
+            foreach($forecast['precipitation'] as $prec) {
+                if ($x==0){
+                    echo"Precipitation: ";
+                }
+                if ($x==1){
+                    //echo"Minimum Temperature: ";
+                }
+                echo "$prec ";
+                
+                $x++;
+                }
+                echo"<br/>";  
+                
+             $x=0;
+            foreach($forecast['precipitation'] as $prec) {
+                if ($x==0){
+                    echo"Precipitation Chance: ";
+                }
+                if ($x==1){
+                    echo"Ammount ";
+                }
+                echo "$prec ";
+                
+                $x++;
+                }
+                echo"<br/>";
+                $x=0;
+                foreach($forecast['sky'] as $solar) {
+                if ($x==0){
+                    echo"Cloud Cover: ";
+                }
+                if ($x==1){
+                    echo"Sunshine ";
+                }
+                echo "$solar ";
+                
+                $x++;
+                }
+                echo"<br/>";
+                
+                
+               $x=0;
+            foreach($forecast['solar'] as $solar) {
+                if ($x==0){
+                    echo"Solar: : ";
+                }
+                if ($x==1){
+                    //echo"Sunshine ";
+                }
+                echo "$solar ";
+                
+                $x++;
+                }
+                echo"<br/>";
+                $x=0;
+                foreach($forecast['relativeHumidity'] as $rel) {
+                if ($x==0){
+                    echo"Relative Humidity Average : ";
+                }
+                if ($x==1){
+                    echo"Min: ";
+                }
+                if ($x==2){
+                    echo"Max: ";
+                }
+                echo "$rel ";
+                
+                $x++;
+                }
+                echo"<br/>";
+                
+                $x=0;
+                foreach($forecast['wind'] as $wind) {
+                if ($x==0){
+                    echo"Wind Average : ";
+                }
+                if ($x==1){
+                    echo"Min: ";
+                }
+                if ($x==2){
+                    echo"Max: ";
+                }
+                echo "$wind ";
+                
+                $x++;
+                }
+                echo"<br/>";
+                
+                $x=0;
+                foreach($forecast['relativeHumidity'] as $rel) {
+                if ($x==0){
+                    echo"Dew Point : ";
+                }
+                if ($x==1){
+                    //echo"Min: ";
+                }
+                
+                echo "$rel ";
+                
+                $x++;
+                }
+                echo"<br/>";
+                
+                
+                }
+                
+            
+            }
+        }echo "</pre>";
+    }
+}
+                }
+               
+     
+       else { 							// If there is any other response code, there was a problem.
 									// this code shows how to extract the two different error messages
 									// You should not use the error messages themselves to drive behavior
 									// (don't test them in if() or switch() statements)
