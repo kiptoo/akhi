@@ -7,6 +7,7 @@ if (!isset($_SESSION['userid']))
 }
 require 'db.inc.php';
 $userid=$_SESSION['userid'];
+error_reporting(E_ERROR | E_PARSE);
 if ($_GET)
 {
 $userid=$_SESSION['userid'];
@@ -65,7 +66,6 @@ if (!isset($_SESSION['newfarm']))
       <li class="active"><a href="#">Weather</a></li>
       <li><a href="forecast.php">Forecasts</a></li>
       <li><a href="agronomics.php">Agronomics</a></li>
-      <li><a href="models.php">Models</a></li>
       <li><a href="help.php">Help</a></li>
       <li><a href="logout.php">Log Out</a></li>
     </ul>
@@ -159,10 +159,93 @@ if($observedWeatherStatusCode==200){  	// Code 200 means the request was success
 	// Content-Range: observations 0-5/5
 	//echo "<pre>".parseHTTPHeaders($observedWeatherResponseHeaders,array('Content-Range'))."</pre>"; 
 	//echo '<p>Response Body:</p>';
-	echo '<pre>'; 
-	echo stripslashes(json_encode($observedWeatherResponse,JSON_PRETTY_PRINT)); //Note: Stripslashes() is used just for prettier 
-	echo '</pre>'; 
-        echo $observedWeatherResponse;
+	//echo '<pre>'; 
+	//echo stripslashes(json_encode($observedWeatherResponse,JSON_PRETTY_PRINT)); //Note: Stripslashes() is used just for prettier 
+	//echo '</pre>'; 
+         $data=json_encode($observedWeatherResponse);
+         $result = json_decode($data,true);
+        //  Scan through outer loop
+         echo"<pre>";
+foreach ($result as $innerArray) {
+    //  Check type
+    if (is_array($innerArray)){
+        //  Scan through inner loop
+        foreach ($innerArray as $value) {
+            if ($value['date']!=""){
+            echo"<h4><u>Weather for $value[date]</u></h4>";
+            //get the temperature
+            echo"<h1>";
+            $x=0;
+            foreach($value['temperatures'] as $temperature) {
+                if ($x==0){
+                    echo"Maximum Temperature: ";
+                }
+                if ($x==1){
+                    echo"Minimum Temperature: ";
+                }
+                echo "$temperature ";
+                
+                $x++;
+                }
+                echo"</h1>";            
+               
+            
+            //get the precipitation
+                echo"<h1>";
+            $x=0;
+            foreach($value['precipitation'] as $prec) {
+                if ($x==0){
+                    echo"Precipitation: ";
+                }
+                if ($x==1){
+                    //echo"Minimum Temperature: ";
+                }
+                echo "$prec ";
+                
+                $x++;
+                }
+                echo"</h1>";  
+            
+            //get the solar
+               echo"<h1>";
+            $x=0;
+                foreach($value['solar'] as $solar) {
+                if ($x==0){
+                    echo"Solar: ";
+                }
+                if ($x==1){
+                    //echo"Minimum Temperature: ";
+                }
+                echo "$solar ";
+                
+                $x++;
+                }
+                echo"</h1>";  
+            //get the relative humidity
+            echo"<h1>";
+            $x=0;
+            foreach($value['relativeHumidity'] as $relativeHumidity) {
+                if ($x==0){
+                    echo"Relative Humidity: Max: ";
+                }
+                if ($x==1){
+                    echo"min: ";
+                }
+                echo "$relativeHumidity ";
+                
+                $x++;
+                }
+                echo"</h1>";            
+            
+            //get the wind
+        }
+        }
+    }else{
+        // one, two, three
+        echo $innerArray;
+    }
+}
+echo"</pre>";
         //output in the browser. Not needed normally.
 	
 	
