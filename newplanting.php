@@ -1,4 +1,15 @@
 <?php
+session_start();
+ob_start();
+require(db.inc.php);
+
+//the variables from the previous page of creating a new planting
+/*$crop_id=$_POST['cropid'];
+$planting_date=$_POST['plantingdate'];
+$yield_amount=$_POST['ammount'];
+$yield_units=$_POST['units'];
+$harvest_date=$_POST[harvestdata];
+*/
 /* aWhere Code Samples
  * Copyright (C) 2015 aWhere Inc.
  * License: MIT 
@@ -101,8 +112,14 @@ if($newFieldStatusCode==201){  	// Code 201 means the Create was successful
 	
 	
 	//To show the newly created field we'll just repeate the Get Fields List call: 
-
-
+        $data=json_encode($newFieldResponse);
+         $result = json_decode($data,true);
+        //  Scan through outer loop
+        
+        foreach ($result as $innerArray) {
+            echo"<h4><u>The id is: $result[id]</u></h4>";
+            $theid=$result['id'];
+        }
 	try{ 
 
 	$fieldsListResponse = makeAPICall('GET', 								//verb
@@ -146,5 +163,8 @@ if($newFieldStatusCode==201){  	// Code 201 means the Create was successful
 }
 
 //get tge plantingid from the API
-$plantingid=$fieldsListResponse;
+
+echo $theid;
 //insert into the database
+$insert="";
+mysql_query($insert);

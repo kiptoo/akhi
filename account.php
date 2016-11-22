@@ -46,7 +46,6 @@ if (!isset($_SESSION['newfarm']))
       <li><a href="weather.php">Weather</a></li>
       <li><a href="forecast.php">Forecast</a></li>
       <li><a href="agronomics.php">Agronomics</a></li>
-      <li><a href="models.php">Models</a></li>
       <li><a href="help.php">Help</a></li>
       <li><a href="logout.php">Log Out</a></li>
     </ul>

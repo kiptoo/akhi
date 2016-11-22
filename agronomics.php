@@ -109,7 +109,7 @@ echo "<p>Access Token = $access_token</p>";
 echo "<hr><h1>Get Forecast</h1>"; 
 		
 			
-$agronomicsURL = 'https://api.awhere.com/v2/agronomics/fields/'
+$forecastURL = 'https://api.awhere.com/v2/agronomics/fields/'
 						.$fieldid
 						.'/agronomicvalues/'
 						.$start.','.$end
@@ -118,11 +118,11 @@ $agronomicsURL = 'https://api.awhere.com/v2/agronomics/fields/'
 
 try{ 
 
-$agronomicsResponse = makeAPICall('GET', 					 
-									$agronomicsURL,	
+$forecastResponse = makeAPICall('GET', 					 
+									$forecastURL,	
 									$access_token,						
-									$agronomicstStatusCode,
-									$agronomicsResponseHeaders); 
+									$forecastStatusCode,
+									$forecastResponseHeaders); 
 } catch(Exception $e){ 
 	echo $e->getMessage(); 
 	exit();  			   
@@ -130,14 +130,14 @@ $agronomicsResponse = makeAPICall('GET',
 
 
 
-if($agronomicsStatusCode==200){  	// Code 200 means the request was successful
+if($forecastStatusCode==200){  	// Code 200 means the request was successful
 	
-	echo '<p>You requested '.count($agronomicsResponse->agronomics)." days of forecast."
+	echo '<p>You requested '.count($forecastResponse->agronomics)." days of forecast."
 			."The forecasted weather on "
-			.date("F j, Y",strtotime($agronomicsResponse->agronomics[0]->date))
+			.date("F j, Y",strtotime($forecastResponse->agronomics[0]->date))
 			." is a high temperature of "
-			.$agronomicsResponse->forecasts[0]->forecast[0]->temperatures->max."&deg;" //because we requested daily data we know there is only one child of "forecast"
-			.$agronomicsResponse->forecasts[0]->forecast[0]->temperatures->units
+			.$forecastResponse->forecasts[0]->forecast[0]->temperatures->max."&deg;" //because we requested daily data we know there is only one child of "forecast"
+			.$forecastResponse->forecasts[0]->forecast[0]->temperatures->units
 			." and a low of "
 			.$forecastResponse->forecasts[0]->forecast[0]->temperatures->min."&deg;"
 			.$forecastResponse->forecasts[0]->forecast[0]->temperatures->units
