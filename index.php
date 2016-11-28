@@ -1,116 +1,97 @@
 <?php
 session_start();
 require 'db.inc.php';
+
 //if the session is set
 if (isset($_SESSION['userid']))
 {
-	header('Location: home.php');
+	header('Location: dashboard.php');
 }
 ?>
-
 <!DOCTYPE html>
-<html >
-  <head>
-    <meta charset="UTF-8">
-    <title>AGRICULTURAL KNOWLEDGE & INFORMATION HUB (AKIH)</title>
-     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../../plugins/iCheck/square/blue.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>AGRINFO</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Sign in to start your session</p>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 
-        <link rel="stylesheet" href="css/style.css">
-
-    
-  </head>
-
-  <body>
-
-    <div id="wrap">
-  <div id="regbar">
-    <div id="navthing">
-      <h2><a href="#" id="loginform">Login</a></h2>
-    <div class="login">
-      <div class="arrow-up"></div>
-      <div class="formholder">
-        <div class="randompad">
-           <fieldset>
-		   <form method="post" action="login.php">
-             <label name="email">Email</label>
-             <input type="email" name="email" required/>
-             <label name="password">Password</label>
-             <input type="password" name="password" required />
-             <input type="submit" value="Login" />
-			</form>
-           </fieldset>
-        </div>
+  <form method="post" action="login.php">
+      <div class="form-group has-feedback">
+        <input type="email" name="email" class="form-control" placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
-    </div>
-	
-    </div>
+      <div class="form-group has-feedback">
+        <input type="password" name="password" class="form-control" placeholder="Password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <input type="checkbox"> Remember Me
+            </label>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
 
-		<h1 align="center">AGRICULTURAL KNOWLEDGE & INFORMATION HUB (AKIH)</h1>
 
- <div class="row">
-  <div class="col-sm-6"><h3 align="center"><br/><br/><br/>This is an web and SMS based portal that contains information from all the stakeholders in the agriculture sector
-i.e.: farmers, Extension services , Manufacturers , Buyers and distributors and gives notifications to subscribers.</h3></div>
-  <div class="col-sm-6"><h1> Register</h1>
-  
-	 <form action="register.php" method="post">
-	<div class="form-group">
-    <label for="email">Full Name:</label>
-    <input type="text" class="form-control" id="name" name="name" required>
+
+    <a href="#">I forgot my password</a><br>
+    <a href="register.html" class="text-center">Register a new membership</a>
+
   </div>
-  <div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="email" class="form-control" id="email" name="email" required>
-  </div>
-  <div class="form-group">
-    <label for="email">Telephone Number:</label>
-    <input type="text" class="form-control" id="telephone" name="telephone" required>
-  </div>
-  <div class="form-group">
-    <label for="county">Category:</label>
-    <select class="form-control" id="category" name="category" required>
-    <option value="farmer">Farmer</option>
-    <option value="manufacturer">Manufacturer</option>
-    <option value="buyer">Buyer/ Distributor</option>
-  </select>
-  </div>
-  <div class="form-group">
-    <label for="county">County:</label>
-    <select class="form-control" id="countyid" name="countyid" required>
-	<?php
-		//get the county
-		$counties="SELECT * FROM counties ORDER BY name";
-		$counties2=mysql_query($counties);
-		while ($counties3=mysql_fetch_array($counties2))
-		{
-			?><option value="<?php echo $counties3['countyid'];?>"><?php echo $counties3['name'];?></option><?php
-		}
-	?>
-  </select>
-  </div>
-  <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" id="password" name="password">
-  </div>
-  
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
-  
-  
-  
-  </div>
+  <!-- /.login-box-body -->
 </div>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<!-- /.login-box -->
 
-        <script src="js/index.js"></script>
-
-    
-    
-  </body>
+<!-- jQuery 2.2.3 -->
+<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="../../plugins/iCheck/icheck.min.js"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>
+</body>
 </html>
