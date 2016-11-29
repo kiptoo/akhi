@@ -9,6 +9,12 @@ if (!isset($_SESSION['userid']))
 require 'db.inc.php';
 
 $userid=$_SESSION['userid'];
+function get_fields($userid) {
+   $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
+   $num_rows = mysql_num_rows($farms);
+   
+   echo $num_rows;
+}
 
  
 
@@ -21,18 +27,32 @@ $userid=$_SESSION['userid'];
           zoom: 6,
           center: uluru
         });
-   
+   var infowindow = new google.maps.InfoWindow();
  $.ajax({
         url: 'ajax_fields.php',
         type: 'GET',
         data: { userid: '<?php echo $userid?>'} ,
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-          //alert(response.length);
-      var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
+            
+        //  alert(response);
+          data = $.parseJSON(response);
+                $.each(data, function(i, item) {
+                   // alert(item.latitude);
+                    
+                    var marker = new google.maps.Marker({
+                    position:new google.maps.LatLng(item.longitude,item.latitude),
+                    map: map
+                  });
+                  google.maps.event.addListener(marker, 'click', (function(marker,i) {
+                        return function() {
+                          infowindow.setContent("kip");
+                          infowindow.open(map, marker);
+                        };
+                      })(marker, item));
+        
+                });
+      
            
         },
         error: function () {
@@ -45,7 +65,7 @@ $userid=$_SESSION['userid'];
         
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAlsOh8z_Yro19dvMo3twx22KrZNTNR6E&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAlsOh8z_Yro19dvMo3twx22KrZNTNR6E&region=KE&callback=initMap"
   async defer>
 </script>
 
@@ -73,12 +93,12 @@ $userid=$_SESSION['userid'];
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+                <h3 id="fields"><?php get_fields($userid) ?></h3>
 
-              <p>New Orders</p>
+              <p>FIELDS</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-clipboard"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
