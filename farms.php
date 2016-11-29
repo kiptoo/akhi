@@ -88,13 +88,16 @@ $county=mysql_query("SELECT * FROM counties");
            if(jQuery.isEmptyObject(markers)===true) {
               //  alert("true");
               addMarker(results[0].geometry.location);
-              
+               document.getElementById("lat").value =results[0].geometry.location.lat();
+                document.getElementById("long").value = results[0].geometry.location.lng();
               
            }
            else{
                 // alert("false");
                 deleteMarkers();
                  addMarker(results[0].geometry.location);
+                   document.getElementById("lat").value =results[0].geometry.location.lat();
+                document.getElementById("long").value = results[0].geometry.location.lng();
            }
            
             
@@ -217,14 +220,15 @@ $county=mysql_query("SELECT * FROM counties");
 				<label style="color:black" for="latitude">Acres</label>
                                 <input type="text" class="form-control" id="acres" name="acres"></br>
                                 <label class="label-warning" for="latitude">Please choose the location of the farm on the map</label>
-			</div>
+			         <button type="submit" class="btn btn-primary">Add farm</button>
+                        </div>
 			
 		</form>
           <div id="farm-map" style="height: 250px; width: 100%;"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Add farm</button>
+       
       </div>
     </div>
   </div>
