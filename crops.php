@@ -64,24 +64,26 @@ $fieldsListResponse = makeAPICall('GET', 								//verb
 
 
 if($fieldsListStatusCode==200){  	// Code 200 means the request was successful
+    
+    return  $fieldsListResponse;
 	
-	echo '<p>There are '.count($fieldsListResponse->fields)." field locations in the current page of results.</p>"; 
-	echo '<p>Request:</p><pre>GET https://api.awhere.com/v2/fields</pre>'; 
-	echo '<p>Content-Range Header (shows pagination and total results):</p>';
-	
-	// HTTP transactions return a lot of headers, but in this example we only want the Content-Range header
-	// (the parseHTTPHeaders function returns just the headers you want)
-	// This API returns a ranged result, which are paginated by default to 50 results per page. The 
-	// Content-Range header shows which of the results are on this page (e.g., 1-10) and the total number
-	// of results. It looks something like this: 
-	// Content-Range: fields 0-5/5
-	echo "<pre>".parseHTTPHeaders($fieldsListResponseHeaders,array('Content-Range'))."</pre>"; 
-	
-	echo '<p>Response Body:</p>';
-	echo '<pre>'; 
-	echo stripslashes(json_encode($fieldsListResponse,JSON_PRETTY_PRINT)); 	//Note: Stripslashes() is used just for prettier 
-	echo '</pre>'; 															//output in the browser. Not needed normally.
-	
+//	echo '<p>There are '.count($fieldsListResponse->fields)." field locations in the current page of results.</p>"; 
+//	echo '<p>Request:</p><pre>GET https://api.awhere.com/v2/fields</pre>'; 
+//	echo '<p>Content-Range Header (shows pagination and total results):</p>';
+//	
+//	// HTTP transactions return a lot of headers, but in this example we only want the Content-Range header
+//	// (the parseHTTPHeaders function returns just the headers you want)
+//	// This API returns a ranged result, which are paginated by default to 50 results per page. The 
+//	// Content-Range header shows which of the results are on this page (e.g., 1-10) and the total number
+//	// of results. It looks something like this: 
+//	// Content-Range: fields 0-5/5
+//	echo "<pre>".parseHTTPHeaders($fieldsListResponseHeaders,array('Content-Range'))."</pre>"; 
+//	
+//	echo '<p>Response Body:</p>';
+//	echo '<pre>'; 
+//	echo stripslashes(json_encode($fieldsListResponse,JSON_PRETTY_PRINT)); 	//Note: Stripslashes() is used just for prettier 
+//	echo '</pre>'; 															//output in the browser. Not needed normally.
+//	
 	
 } else { 							// If there is any other response code, there was a problem.
 									// this code shows how to extract the two different error messages

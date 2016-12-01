@@ -10,9 +10,22 @@ require 'db.inc.php';
 
 $userid=$_SESSION['userid'];
 $county=mysql_query("SELECT * FROM counties");
+$farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
 ?>
-
 <script>
+
+
+</script>
+<style>
+
+        
+        .bigdrop.select2-container .select2-results {max-height: 300px;}
+        .bigdrop .select2-results {max-height: 300px;}
+      
+    
+</style>
+<script>
+    //maps
     var geocoder;
     var markers = [];
       function initMap() {
@@ -20,7 +33,7 @@ $county=mysql_query("SELECT * FROM counties");
         var uluru = {lat: -1.392, lng: 36.8219};
          var farmmap = new google.maps.Map(document.getElementById('farm-map'), {
           zoom: 9,
-          center:uluru,
+          center:uluru
           
         });
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -143,12 +156,40 @@ $county=mysql_query("SELECT * FROM counties");
         clearMarkers();
         markers = [];
       }
+      
+      //begin selectors
   $('select').select2().on("change", function(e) {
          
           codeAddress();
         });
       }
+      
+ $(".js-data-example-ajax").select2({
+
+    ajax: {
+      url: 'https://api.github.com/search/repositories',
+      dataType: 'json',
+      quietMillis: 100,
+      data: function(term) {
+        return {
+          q: term.term
+        };
+      },
+      processResults: function(data) {
+        return {
+          results: $.map(data.items, function(item, index) {
+            return {
+              'id': item.id,
+              'text': item.name
+            };
+          })
+        };
+      }
+    }
+  });
+     //end of selectors
      
+    
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAlsOh8z_Yro19dvMo3twx22KrZNTNR6E&callback=initMap"
   async defer>
@@ -162,12 +203,19 @@ $county=mysql_query("SELECT * FROM counties");
     <!-- Main content -->
     <section class="content">
 
-    
+    <select class="js-data-example-ajax">
+  <option value="3620194" selected="selected">select2/select2</option>
+</select>
     <div class="box box-solid bg-light-blue-gradient">
             <div class="box-header">
-                <div class="pull-left box-tools">
+<!--                <div class="pull-left box-tools">
                     <button type="button" class="btn btn-primary btn-default  pull-left" data-toggle="modal" id="create_field" data-target="#myModal" data-backdrop="static" data-keyboard="false" title="Create Field">
                   <i class="fa fa-plus"></i> Add Farm</button>
+               
+              </div>-->
+                <div class="pull-right box-tools">
+                    <button type="button" class="btn btn-primary btn-default  pull-right" data-toggle="modal" id="create_field" data-target="#plantingModal" data-backdrop="static" data-keyboard="false" title="Create Field">
+                  <i class="fa fa-plus"></i> Add Planting</button>
                
               </div>
            
@@ -220,16 +268,92 @@ $county=mysql_query("SELECT * FROM counties");
 				<label style="color:black" for="latitude">Acres</label>
                                 <input type="text" class="form-control" id="acres" name="acres"></br>
                                 <label class="label-warning" for="latitude">Please choose the location of the farm on the map</label>
-			         <button type="submit" class="btn btn-primary">Add farm</button>
+			        
                         </div>
 			
-		</form>
+		 </form>
           <div id="farm-map" style="height: 250px; width: 100%;"></div>
       </div>
       <div class="modal-footer">
+           <button type="submit" class="btn btn-primary">Add farm</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
        
       </div>
+       
+    </div>
+  </div>
+</div>
+                  <!-- Modal -->
+<div class="modal fade " id="plantingModal" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" style="color: black" id="myModalLabel">Create Farm</h4>
+      </div>
+      <div class="modal-body">
+          <form method="post" action="newplanting.php">
+			<div class="form-group">
+       
+                               
+                                <label style="color:black" for="location">Choose Farm</label>
+                                
+                <div class="form-group">
+              
+                    <select id="select_county" name="fieldid"  class="form-control select2" style="width: 100%;z-index: 100">
+                    <?php 
+                    while ($farm=mysql_fetch_assoc($farms))
+                        {
+                           
+                       echo " <option>$farm[name]</option>";
+
+                         }
+                ?>
+                 
+                </select>
+              </div>
+          
+         
+            <div class="form-group">
+                <label style="color:black" for="crop">Choose Crop</label>
+                    <div class="form-group">
+        <label for="s2id_autogen6_search" class="select2-offscreen"></label>  
+        <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-6" id="s2id_autogen6_search" placeholder=""> 
+                    </div> 
+                <ul class="select2-results" role="listbox" id="select2-results-6"><li class="select2-no-results">Please enter 3 or more characters</li></ul>
+                
+            </div>
+            <div class="form-group">
+                <label style="color:black" for="date">Planting Date</label>
+                <input type="date" class="form-control" id="plantingdate" name="plantingdate" required>
+            </div>
+            <div class="form-group">
+                <label style="color:black" for="start">Yield Amount</label>
+                <input type="text" class="form-control" id="ammount" name="ammount" required>
+            </div>
+            <div class="form-group">
+                <label style="color:black" for="start">Yield units</label>
+                <input type="text" class="form-control" id="units" name="units" required>
+            </div>
+            <div class="form-group">
+                <label style="color:black" for="start">Harvest Date</label>
+                <input type="date" class="form-control" id="hdate" name="harvestdate" required>
+            </div>
+           
+           
+        
+                        </div>
+			
+		
+          
+      </div>
+        
+      <div class="modal-footer">
+           <input type="submit" class="btn btn-default" value="Add Planting"/>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       
+      </div>
+        </form>
     </div>
   </div>
 </div>
