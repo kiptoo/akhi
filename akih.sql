@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2016 at 08:18 PM
+-- Generation Time: Dec 06, 2016 at 09:26 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -104,7 +104,26 @@ CREATE TABLE `fields` (
 --
 
 INSERT INTO `fields` (`fieldid`, `longitude`, `latitude`, `name`, `farmid`, `acres`) VALUES
-(19, '1.2921', '36.8219', 'Mango', 3, 23);
+(19, '-1.2921', '36.8219', 'Mango', 3, 23),
+(20, ' -0.144882', '35.90641', 'kabarak', 3, 5),
+(21, '0.489717', '35.74116230000004', 'Baringo Farm', 3, 4),
+(22, ' 0.6726149', '35.508038899999974', 'Iten Farm', 3, 34),
+(23, '-0.5803037999999999', '37.63244750000001', 'Embu Farm', 3, 45),
+(24, '-2.0980751', '36.781950499999994', 'Kajiado Farm', 3, 34),
+(25, '-1.7864953', '37.63110710000001', 'Makueni Farm', 3, 23),
+(26, '0.1112121', '40.314242899999954', 'wheat farm', 3, 19),
+(27, '0.4346506', '34.2421597', 'Busia Farm', 3, 47),
+(28, '-0.4295981', '36.9502473', 'Gathatha', 3, 90),
+(29, '-1.1461877', '36.966499399999975', 'Kiambu Farm', 3, 89),
+(30, '-0.6743161999999999', '34.77153169999997', 'Kisii Farm', 3, 56),
+(31, '-4.0146986', '39.69181430000003', 'Mombasa Farm', 3, 45),
+(32, '0.2836608', '34.75146259999997', 'Kakamega Farm', 3, 67),
+(33, '-0.5803037999999999', '37.63244750000001', 'Siakago Farm', 3, 12),
+(34, '0.3969873', '37.15877599999999', 'Laikipia Farm', 3, 78),
+(35, '-0.7855612', '35.33913949999999', 'Bomet Farm', 3, 89),
+(36, '3.3873803', '40.64587860000006', 'Mandera Farm', 3, 35),
+(37, '-0.0917016', '34.76795679999998', 'Kisumu Farm', 3, 2),
+(38, '1.0475296', '38.587864699999955', 'Merti Farm', 3, 8);
 
 -- --------------------------------------------------------
 
@@ -119,6 +138,35 @@ CREATE TABLE `locations` (
   `lat` text NOT NULL,
   `name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plantings`
+--
+
+CREATE TABLE `plantings` (
+  `plantingid` int(20) NOT NULL,
+  `fieldid` int(50) NOT NULL,
+  `cropid` varchar(50) NOT NULL,
+  `plantingdate` date NOT NULL,
+  `yieldamount` varchar(50) NOT NULL,
+  `yieldunit` varchar(50) NOT NULL,
+  `harvestdate` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf16;
+
+--
+-- Dumping data for table `plantings`
+--
+
+INSERT INTO `plantings` (`plantingid`, `fieldid`, `cropid`, `plantingdate`, `yieldamount`, `yieldunit`, `harvestdate`) VALUES
+(135575, 24, 'wheat-generic', '2016-04-20', '50', '50', '2016-08-20'),
+(135581, 20, '2016-04-20', '2016-04-20', '50', '50', '2016-08-20'),
+(135582, 20, '2016-04-20', '2016-04-20', '50', '50', '2016-08-20'),
+(135584, 22, '2016-03-10', '2016-03-10', '50', '50', '2016-07-07'),
+(135585, 21, '2016-03-10', '2016-03-10', '50', '50', '2016-07-07'),
+(135592, 23, '2016-03-10', '2016-03-10', '50', '50', '2016-07-30'),
+(135595, 26, '2016-08-27', '2016-08-27', '50', '50', '2016-12-06');
 
 -- --------------------------------------------------------
 
@@ -170,6 +218,12 @@ ALTER TABLE `locations`
   ADD PRIMARY KEY (`locationid`);
 
 --
+-- Indexes for table `plantings`
+--
+ALTER TABLE `plantings`
+  ADD PRIMARY KEY (`plantingid`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -188,7 +242,7 @@ ALTER TABLE `counties`
 -- AUTO_INCREMENT for table `fields`
 --
 ALTER TABLE `fields`
-  MODIFY `fieldid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `fieldid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `locations`
 --
