@@ -1,6 +1,7 @@
 
  <?php
 require 'db.inc.php';
+//include("header.php"); 
 
 $userid=$_GET['userid'];
 

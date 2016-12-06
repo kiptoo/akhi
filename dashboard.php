@@ -46,7 +46,7 @@ function get_fields($userid) {
                   });
                   google.maps.event.addListener(marker, 'click', (function(marker,i) {
                         return function() {
-                          infowindow.setContent("kip");
+                          infowindow.setContent('<p style="color:black">'+item.name+'</p>');
                           infowindow.open(map, marker);
                         };
                       })(marker, item));

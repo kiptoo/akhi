@@ -13,7 +13,12 @@ $county=mysql_query("SELECT * FROM counties");
 $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
 ?>
 <script>
+$(document).ready(function() {
+ 
 
+
+    
+  });
 
 </script>
 <style>
@@ -25,6 +30,7 @@ $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
     
 </style>
 <script>
+
     //maps
     var geocoder;
     var markers = [];
@@ -158,37 +164,219 @@ $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
       }
       
       //begin selectors
-  $('select').select2().on("change", function(e) {
+  $('#select_county').select2().on("change", function(e) {
          
           codeAddress();
         });
-      }
-      
- $(".js-data-example-ajax").select2({
+        
+         $('#select_farm').select2().on("change", function(e) {
+         
+         
+        });  
+        
+        function formatcrop (crop) {
+         
+      if (crop.loading) return crop.text;
+     var markup = " <div class='box box-widget widget-user-2'>"+
+              "<div class='widget-user-header bg-yellow'>"+            
+              "<h3 class='widget-user-username'>"+crop.id+"</h3>"+
+              "<h5 class=2'widget-user-desc'>"+crop.variety+"</h5>"+"</div>"+
+            
+           " <div class='box-footer no-padding'>"+
+              "<ul class='nav nav-stacked'>"+
+               " <li><a href='#'>Crop Name<span class='pull-right badge bg-blue'>"+crop.name+"</span></a></li>"+
+                "<li><a href='#'>Variety<span class='pull-right badge bg-aqua'>" + crop.variety+ "</span></a></li>"+
+               " <li><a href='#'>Type<span class='pull-right badge bg-green'>" + crop.type+ "</span></a></li>"+
+                "<li><a href='#'>isdefaultCrop<span class='pull-right badge bg-red'>" + crop.isDefaultForCrop +"</span></a></li>"+
+             " </ul>"+
+            "</div>"+
+         " </div>";
+//      var markup = "<div class='select2-result-repository clearfix'>" +
+//        "<div class='select2-result-repository__meta'>" +
+//          "<div class='select2-result-repository__title'>" + crop.id + "</div>";
+//
+//   
+//
+//      markup += "<div class='select2-result-repository__statistics'>" +
+//        "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> isDefaultCrop :" + crop.isDefaultForCrop +
+//+ "</div>" +
+//        "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> Variety: " + crop.variety+ "</div>" +
+//        "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> Crop Name: " + crop.name+ "</div>" +
+//      "</div>" +
+//      "</div></div>";
 
-    ajax: {
-      url: 'https://api.github.com/search/repositories',
-      dataType: 'json',
-      quietMillis: 100,
-      data: function(term) {
-        return {
-          q: term.term
-        };
-      },
-      processResults: function(data) {
-        return {
-          results: $.map(data.items, function(item, index) {
-            return {
-              'id': item.id,
-              'text': item.name
-            };
-          })
-        };
-      }
+      return markup;
     }
-  });
+
+  function formatcropSelection (crop) {
+    return crop.name || crop.text;
+  }
+
+   $(".js-data-example-ajax").select2({
+        ajax: {
+          url: "http://agrinfo/crops",
+          dataType: 'json',
+          delay: 250,
+          data: function (params) {
+              console.log(params);
+            return {
+              crop: params.term // search term
+             
+            };
+          },
+          processResults: function (data) {
+      
+              console.log(data);
+            return {
+              results: data.crops
+             
+            };
+          },
+          cache: true
+        },
+       escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+      minimumInputLength: 1,
+      templateResult: formatcrop, // omitted for brevity, see the source of this page
+       templateSelection: formatcropSelection // omitted for brevity, see the source of this page
+      });
+ 
+            
+        $('#farmform').submit(function(e) {
+            
+             $('.form-group').removeClass('has-error'); // remove the error class
+             $('.help-block').remove(); // remove the error text
+
+            // get the form data
+                // there are many ways to get this data using jQuery (you can use the class or id also)
+                var formData = {
+                    'name'   : $('input[name=name]').val(),
+                    'long'   : $('input[name=long]').val(),
+                    'lat'    : $('input[name=lat]').val(),
+                    'acres'  : $('input[name=acres]').val()
+                };
+
+                // process the form
+                $.ajax({
+                    type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                    url         : 'newfarm.php', // the url where we want to POST
+                    data        : formData, // our data object
+                    dataType    : 'json', // what type of data do we expect back from the server
+                   encode          : true
+                
+                })
+                    // using the done promise callback
+                    .done(function(data) {
+                     
+                        // log data to the console so we can see
+                        console.log(data); 
+                          // here we will handle errors and validation messages
+        if ( ! data.success) {
+         
+            // handle errors for name ---------------
+            if (data.errors.name) {
+                $('#name-group').addClass('has-error'); // add the error class to show red input
+                $('#name-group').append('<div class="help-block">' + data.errors.name + '</div>'); // add the actual error message under our input
+            }
+
+            // handle errors for email ---------------
+            if (data.errors.location) {
+                $('#location-group').addClass('has-error'); // add the error class to show red input
+                $('#location-group').append('<div class="help-block">' + data.errors.location + '</div>'); // add the actual error message under our input
+            }
+
+            // handle errors for superhero alias ---------------
+         
+
+        } else {
+
+            // ALL GOOD! just show the success message!
+            $('form').append('<div class="alert alert-success">' + data.message + '</div>');
+
+            // usually after form submission, you'll want to redirect
+            // window.location = '/thank-you'; // redirect a user to another page
+            alert('success'); // for now we'll just alert the user
+
+        }
+
+                        // here we will handle errors and validation messages
+                    });
+
+                // stop the form from submitting the normal way and refreshing the page
+                e.preventDefault();
+         });
+         
+            $('#plantingform').submit(function(e) {
+            
+             $('.form-group').removeClass('has-error'); // remove the error class
+             $('.help-block').remove(); // remove the error text
+       // alert($('input[name=harvestdate]').val());
+//   
+            
+            // get the form data
+                // there are many ways to get this data using jQuery (you can use the class or id also)
+                var formplantingData = {
+                    'cropid'   : $('select[name=cropid]').val(),
+                    'fieldid'   : $('select[name=fieldid]').val(),
+                    'plantingdate'    : $('input[name=plantingdate]').val(),
+                    'amount'  : $('input[name=amount]').val(),
+                    'units'  : $('input[name=units]').val(),
+                    'harvestdate'  : $('input[name=harvestdate]').val()
+                };
+  
+                // process the form
+                $.ajax({
+                    type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                    url         : 'newplanting.php', // the url where we want to POST
+                    data        : formplantingData, // our data object
+                    dataType    : 'json', // what type of data do we expect back from the server
+                   encode          : true
+                
+                })
+                    // using the done promise callback
+                    .done(function(data) {
+                     
+                        // log data to the console so we can see
+                        console.log(data); 
+                          // here we will handle errors and validation messages
+        if ( ! data.success) {
+         
+            // handle errors for name ---------------
+            if (data.errors.cropid) {
+                $('#cropid-group').addClass('has-error'); // add the error class to show red input
+                $('#cropid-group').append('<div class="help-block">' + data.errors.cropid + '</div>'); // add the actual error message under our input
+            }
+
+            // handle errors for email ---------------
+            if (data.errors.plantingdate) {
+                $('#plantingdate-group').addClass('has-error'); // add the error class to show red input
+                $('#plantingdate-group').append('<div class="help-block">' + data.errors.plantingdate+ '</div>'); // add the actual error message under our input
+            }
+
+            // handle errors for superhero alias ---------------
+         
+
+        } else {
+
+            // ALL GOOD! just show the success message!
+            $('form').append('<div class="alert alert-success">Success creating Planting </div>');
+
+            // usually after form submission, you'll want to redirect
+            // window.location = '/thank-you'; // redirect a user to another page
+            alert('success'); // for now we'll just alert the user
+
+        }
+
+                        // here we will handle errors and validation messages
+                    });
+
+                // stop the form from submitting the normal way and refreshing the page
+                e.preventDefault();
+         });
+      }
+   
+ 
      //end of selectors
-     
+    
     
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAlsOh8z_Yro19dvMo3twx22KrZNTNR6E&callback=initMap"
@@ -202,10 +390,8 @@ $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
 
     <!-- Main content -->
     <section class="content">
-
-    <select class="js-data-example-ajax">
-  <option value="3620194" selected="selected">select2/select2</option>
-</select>
+     
+  
     <div class="box box-solid bg-light-blue-gradient">
             <div class="box-header">
 <!--                <div class="pull-left box-tools">
@@ -214,6 +400,8 @@ $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
                
               </div>-->
                 <div class="pull-right box-tools">
+                    <button type="button" class="btn btn-primary btn-default  pull-right" data-toggle="modal" id="create_farm" data-target="#myModal" data-backdrop="static" data-keyboard="false" title="Create Field">
+                  <i class="fa fa-map-marker"></i> Add Farm</button>
                     <button type="button" class="btn btn-primary btn-default  pull-right" data-toggle="modal" id="create_field" data-target="#plantingModal" data-backdrop="static" data-keyboard="false" title="Create Field">
                   <i class="fa fa-plus"></i> Add Planting</button>
                
@@ -237,14 +425,16 @@ $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" style="color: black" id="myModalLabel">Create Farm</h4>
       </div>
+        <form id="farmform"method="post" >
       <div class="modal-body">
-          <form method="post" action="newfarm.php">
-			<div class="form-group">
+          
+                      <div id="name-group"class="form-group">
        
                                 <label style="color:black" for="location">Name of farm</label>
 				<input type="text" class="form-control" id="name" name="name">
+                       </div>               
                                 <label style="color:black" for="location">County</label>
-                                
+                         
                 <div class="form-group">
               
                     <select id="select_county" class="form-control select2" style="width: 100%;z-index: 100">
@@ -260,26 +450,31 @@ $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
                 </select>
               </div>
           
-<!--				<input type="text" class="form-control" id="name" name="name">-->
+                      
 				
-				<input type="text" class="form-control" id="long" name="long">
+				<input type="hidden" class="form-control" id="long" name="long">
 				
-				<input type="text" class="form-control" id="lat" name="lat">
+				<input type="hidden" class="form-control" id="lat" name="lat">
+                       
+                                <div id="acre-group"class="form-group">
 				<label style="color:black" for="latitude">Acres</label>
-                                <input type="text" class="form-control" id="acres" name="acres"></br>
+                                <input type="text" class="form-control" id="acres" name="acres">
+                                </div>       
+                                </br>
+                     <div id="location-group"class="form-group">
                                 <label class="label-warning" for="latitude">Please choose the location of the farm on the map</label>
-			        
-                        </div>
+			</div>        
+                        
 			
-		 </form>
+		 
           <div id="farm-map" style="height: 250px; width: 100%;"></div>
       </div>
       <div class="modal-footer">
            <button type="submit" class="btn btn-primary">Add farm</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       
+      
       </div>
-       
+       </form> 
     </div>
   </div>
 </div>
@@ -289,10 +484,11 @@ $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" style="color: black" id="myModalLabel">Create Farm</h4>
+        <h4 class="modal-title" style="color: black" id="myModalLabel">Create Planting</h4>
       </div>
+        <form id="plantingform"method="post" >
       <div class="modal-body">
-          <form method="post" action="newplanting.php">
+         
 			<div class="form-group">
        
                                
@@ -300,12 +496,12 @@ $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
                                 
                 <div class="form-group">
               
-                    <select id="select_county" name="fieldid"  class="form-control select2" style="width: 100%;z-index: 100">
+                    <select id="select_farm" name="fieldid"  class="form-control select2" style="width: 100%;z-index: 100">
                     <?php 
                     while ($farm=mysql_fetch_assoc($farms))
                         {
                            
-                       echo " <option>$farm[name]</option>";
+                       echo " <option value='$farm[fieldid]'>$farm[name]</option>";
 
                          }
                 ?>
@@ -314,46 +510,41 @@ $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
               </div>
           
          
-            <div class="form-group">
+           <div class="form-group" id="cropid-group">
                 <label style="color:black" for="crop">Choose Crop</label>
-                    <div class="form-group">
-        <label for="s2id_autogen6_search" class="select2-offscreen"></label>  
-        <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-6" id="s2id_autogen6_search" placeholder=""> 
-                    </div> 
-                <ul class="select2-results" role="listbox" id="select2-results-6"><li class="select2-no-results">Please enter 3 or more characters</li></ul>
-                
+                <select id="cropid" name="cropid" class="js-data-example-ajax" style="width:100%" > 
+               </select>
             </div>
-            <div class="form-group">
+                                <div class="form-group" id="plantingdate-group">
                 <label style="color:black" for="date">Planting Date</label>
-                <input type="date" class="form-control" id="plantingdate" name="plantingdate" required>
+                <input type="date" class="form-control" id="plantingdate" name="plantingdate" >
             </div>
             <div class="form-group">
                 <label style="color:black" for="start">Yield Amount</label>
-                <input type="text" class="form-control" id="ammount" name="ammount" required>
+                <input type="text" class="form-control" id="amount" name="amount" >
             </div>
             <div class="form-group">
                 <label style="color:black" for="start">Yield units</label>
-                <input type="text" class="form-control" id="units" name="units" required>
+                <input type="text" class="form-control" id="units" name="units" >
             </div>
             <div class="form-group">
                 <label style="color:black" for="start">Harvest Date</label>
-                <input type="date" class="form-control" id="hdate" name="harvestdate" required>
+                <input type="date" class="form-control" id="hdate" name="harvestdate" >
             </div>
+            
            
-           
-        
-                        </div>
-			
+     
+	   		
 		
           
       </div>
         
       <div class="modal-footer">
-           <input type="submit" class="btn btn-default" value="Add Planting"/>
+          <button type="submit" class="btn btn-primary" value="Add Planting"/>Add planting</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
        
       </div>
-        </form>
+     </form>
     </div>
   </div>
 </div>
@@ -376,25 +567,7 @@ $farms=mysql_query("SELECT * FROM fields WHERE farmid='$userid'");
 
 
 
-<!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 2.2.3 -->
-<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
-<!-- Select2 -->
-<script src="../../plugins/select2/select2.full.min.js"></script>
-<script> 
-
- 
-
-</script>
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. Slimscroll is required when using the
-     fixed layout. -->
 <?php
 include'footer.php';
 ?>
