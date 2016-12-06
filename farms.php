@@ -242,6 +242,7 @@ $(document).ready(function() {
  
             
         $('#farmform').submit(function(e) {
+             
             
              $('.form-group').removeClass('has-error'); // remove the error class
              $('.help-block').remove(); // remove the error text
@@ -290,11 +291,11 @@ $(document).ready(function() {
         } else {
 
             // ALL GOOD! just show the success message!
-            $('form').append('<div class="alert alert-success">' + data.message + '</div>');
+            $('#farmform').append('<div class="alert alert-success">' + data.message + '</div>');
 
             // usually after form submission, you'll want to redirect
             // window.location = '/thank-you'; // redirect a user to another page
-            alert('success'); // for now we'll just alert the user
+            alert(' success creating farm'); // for now we'll just alert the user
 
         }
 
@@ -306,7 +307,7 @@ $(document).ready(function() {
          });
          
             $('#plantingform').submit(function(e) {
-            
+             
              $('.form-group').removeClass('has-error'); // remove the error class
              $('.help-block').remove(); // remove the error text
        // alert($('input[name=harvestdate]').val());
@@ -358,11 +359,11 @@ $(document).ready(function() {
         } else {
 
             // ALL GOOD! just show the success message!
-            $('form').append('<div class="alert alert-success">Success creating Planting </div>');
+            $('#plantingform').append('<div class="alert alert-success">Success creating Planting </div>');
 
             // usually after form submission, you'll want to redirect
             // window.location = '/thank-you'; // redirect a user to another page
-            alert('success'); // for now we'll just alert the user
+            alert('success crating planting'); // for now we'll just alert the user
 
         }
 
@@ -372,6 +373,20 @@ $(document).ready(function() {
                 // stop the form from submitting the normal way and refreshing the page
                 e.preventDefault();
          });
+          $('#create_planting').click(function(e){
+             // alert();
+               $('#farmform').removeClass('alert-success'); // remove the error class
+               $('#farmform').removeClass('alert');
+          });
+          $('#farmstable').DataTable(
+//                  {
+//              "processing": true,
+//               "serverSide": true,
+//               "ajax": "ajax_fields.php"
+//
+//          }
+                  );
+         
       }
    
  
@@ -402,21 +417,23 @@ $(document).ready(function() {
                 <div class="pull-right box-tools">
                     <button type="button" class="btn btn-primary btn-default  pull-right" data-toggle="modal" id="create_farm" data-target="#myModal" data-backdrop="static" data-keyboard="false" title="Create Field">
                   <i class="fa fa-map-marker"></i> Add Farm</button>
-                    <button type="button" class="btn btn-primary btn-default  pull-right" data-toggle="modal" id="create_field" data-target="#plantingModal" data-backdrop="static" data-keyboard="false" title="Create Field">
+                    <button type="button" class="btn btn-primary btn-default  pull-right" data-toggle="modal" id="create_planting" data-target="#plantingModal" data-backdrop="static" data-keyboard="false" title="Create Field">
                   <i class="fa fa-plus"></i> Add Planting</button>
-               
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
+                  <i class="fa fa-minus"></i></button>
               </div>
            
 
               <i class="fa fa-map-marker"></i>
 
               <h3 class="box-title">
-                Farms/Fields
+                Farms Map
               </h3>
             </div>
             <div class="box-body">
               <div id="map" style="height: 650px; width: 100%;"></div>
             </div>
+    </div>
           <!-- Modal -->
 <div class="modal fade " id="myModal" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -550,6 +567,63 @@ $(document).ready(function() {
 </div>
           </div>
           <!-- /.box -->
+          
+          
+          <!--box data bales-->
+          
+          <div class="box" style="margin-top: 30px">
+            <div class="box-header">
+<!--                <div class="pull-left box-tools">
+                    <button type="button" class="btn btn-primary btn-default  pull-left" data-toggle="modal" id="create_field" data-target="#myModal" data-backdrop="static" data-keyboard="false" title="Create Field">
+                  <i class="fa fa-plus"></i> Add Farm</button>
+               
+              </div>-->
+                <div class="pull-right box-tools">
+<!--                    <button type="button" class="btn btn-primary btn-default  pull-right" data-toggle="modal" id="create_farm" data-target="#myModal" data-backdrop="static" data-keyboard="false" title="Create Field">
+                  <i class="fa fa-map-marker"></i> Add Farm</button>
+                    <button type="button" class="btn btn-primary btn-default  pull-right" data-toggle="modal" id="create_planting" data-target="#plantingModal" data-backdrop="static" data-keyboard="false" title="Create Field">
+                  <i class="fa fa-plus"></i> Add Planting</button>-->
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
+                  <i class="fa fa-minus"></i></button>
+              </div>
+           
+
+              <i class="fa fa-map-marker"></i>
+
+              <h3 class="box-title">
+                Farms/Fields and Plantings
+              </h3>
+            </div>
+            <div class="box-body">
+                <div id="datatables" style="height: 650px; width: 100%;">
+      <table id="farmstable" class="display " cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Field name</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>farmer</th>
+                <th>Acres</th>
+                
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                 <th>Field name</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>farmer</th>
+                <th>Acres</th>
+            </tr>
+        </tfoot>
+    </table>
+
+                    
+                </div>
+            </div>
+              
+          </div>
+          
     </section>
     <!-- /.content -->
   </div>
